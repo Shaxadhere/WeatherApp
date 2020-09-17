@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ViewController: UIViewController {
 
@@ -28,6 +29,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var refresh: UIBarButtonItem!
 
+    @IBOutlet weak var showNotifBtn: UIButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +39,39 @@ class ViewController: UIViewController {
         
         
     }
+    
+   
+    @IBAction func showNotification(_ sender: Any) {
+        
+        let content = UNMutableNotificationContent()
+        content.title = "It'll hot today"
+        content.body = "Temperature will rise up to 40 today"
+        content.sound = .default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats:false)
+        let request = UNNotificationRequest(identifier: "id", content: content, trigger: trigger)
+        
+        let current = UNUserNotificationCenter.current()
+        
+        current.add(request) { (error) in
+            print(error?.localizedDescription ?? "")
+        }
+      
+    }
+    
+    
+    
+    
+    @IBAction func refreshWeather(_ sender: Any) {
+        
+        getWeather()
+        
+    }
+    
+    @IBAction func changeCity(_ sender: Any) {
+    }
+    
+    
     func getWeather(){
 //        let urlString = "https://api.weatherstack.com/current?access_key=be6ae38cfd9b67a4f60a7ab12faf3754&query=Karachi"
         
@@ -68,6 +105,8 @@ class ViewController: UIViewController {
                         self.wind_speed.text = "Wind Speed: " + String(wind_speed) + " mph"
                         self.wind_dir.text = "Wind Direction: " + String(wind_dir)
                         self.weather_desc.text = weather_desc
+                        let url = URL(string: weatherIcon)
+                        self.weather_icon.kf.setImage(with: url)
                     } else {
                         print("bad json")
                     }

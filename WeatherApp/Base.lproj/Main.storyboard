@@ -82,11 +82,31 @@
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                             </state>
                                         </button>
+                                        <connections>
+                                            <action selector="refreshWeather:" destination="BYZ-38-t0r" id="nTD-9b-hjO"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pMz-Fl-33S">
+                                <rect key="frame" x="147" y="740" width="121" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Show Notification"/>
+                                <connections>
+                                    <action selector="showNotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KxR-iD-gSm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zic-2F-7xe">
+                                <rect key="frame" x="124" y="804" width="166" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Change City"/>
+                                <connections>
+                                    <action selector="changeCity:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oVX-aO-qf3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <accessibility key="accessibilityConfiguration" identifier="mainView"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
@@ -94,6 +114,7 @@
                         <outlet property="feels_like" destination="Cwv-RL-ajL" id="W4E-2r-gvs"/>
                         <outlet property="last_checked" destination="fRK-Hz-BbP" id="fuO-nE-rBN"/>
                         <outlet property="refresh" destination="ONg-TW-sWc" id="fvK-vr-oD5"/>
+                        <outlet property="showNotifBtn" destination="pMz-Fl-33S" id="KvW-DP-kEI"/>
                         <outlet property="temperature" destination="CKT-wU-uSr" id="9sn-V0-5qN"/>
                         <outlet property="weather_desc" destination="Zu3-05-ShH" id="ou6-Zu-Rzg"/>
                         <outlet property="weather_icon" destination="Flt-d9-Zx1" id="UMG-FE-dBE"/>
@@ -104,6 +125,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="101.78571428571428"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rBb-L4-YtX">
+            <objects>
+                <viewController id="WM6-uV-eJK" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vul-ao-1Ve">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hSB-Os-viM">
+                                <rect key="frame" x="0.0" y="64" width="414" height="798"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="SgX-ZP-Dcj">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SgX-ZP-Dcj" id="ye8-aQ-AEq">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <accessibility key="accessibilityConfiguration" identifier="cityView"/>
+                        <constraints>
+                            <constraint firstItem="hSB-Os-viM" firstAttribute="leading" secondItem="sOL-YP-ABb" secondAttribute="leading" id="3QZ-7y-0K9"/>
+                            <constraint firstItem="sOL-YP-ABb" firstAttribute="bottom" secondItem="hSB-Os-viM" secondAttribute="bottom" id="UzF-lS-aT1"/>
+                            <constraint firstItem="sOL-YP-ABb" firstAttribute="trailing" secondItem="hSB-Os-viM" secondAttribute="trailing" id="W4h-6U-Rwd"/>
+                            <constraint firstItem="hSB-Os-viM" firstAttribute="top" secondItem="sOL-YP-ABb" secondAttribute="top" constant="20" id="qce-Iz-VbI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sOL-YP-ABb"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2NA-X4-25m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="874" y="102"/>
         </scene>
     </scenes>
     <resources>
